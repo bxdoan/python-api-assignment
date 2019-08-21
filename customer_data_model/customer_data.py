@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-db_string = "postgres://doan:doan@localhost/postgres"
+db_string = "postgres://postgres:postgres@localhost/postgres"
 
 db = create_engine(db_string)
 base = declarative_base()
@@ -30,7 +30,7 @@ session.commit()
 # Read
 customers = session.query(Customers)
 for customer in customers:
-    print(customer.id, customer.name)
+    print(customer.id, customer.name, customer.dob)
 
 # Delete
 session.delete(customer)
