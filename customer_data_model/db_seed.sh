@@ -1,4 +1,6 @@
 #!/bin/bash
+# Author: Doan Bui (bxdoan93@gmail.com)
+# htttps://github.com/bxdoan/python-api-assignment
 psqluser="postgres"   # Database username
 psqlpass="postgres"   # Database password
 psqldb="postgres"     # Database name
@@ -13,7 +15,7 @@ fi
 echo "Create database postgres"
 createdb $psqldb
 
-# create the customers table
+# Create the customers table
 echo "Create the customers table"
 psql -d $psqldb -U $psqluser -c "DROP TABLE IF EXISTS customers;
                                   CREATE TABLE customers(id serial PRIMARY KEY,
@@ -21,19 +23,19 @@ psql -d $psqldb -U $psqluser -c "DROP TABLE IF EXISTS customers;
                                            dob date,
                                            updated_at timestamp);"
 
-# insert some seeding data
-echo "insert some seeding data"
-psql -d $psqldb -c "INSERT INTO customers VALUES
-    (1, 'Ronaldo', '1/8/1991', '2019-08-22 04:05:01'),
-		(2, 'Messi', '3/4/1992', '2019-08-22 04:05:02'),
-		(3, 'Modric', '3/28/1993', '2019-08-22 04:05:03'),
-		(4, 'Salah', '4/25/1994', '2019-08-22 04:05:04'),
-		(5, 'Pogba', '1/8/1995', '2019-08-22 04:05:05'),
-		(6, 'Kante', '1/22/1996', '2019-08-22 04:05:06'),
-		(7, 'Neymar', '1/23/1997', '2019-08-22 04:05:07'),
-		(8, 'Mbappe', '1/13/1998', '2019-08-22 04:05:08'),
-		(9, 'Kroos', '1/11/1999', '2019-08-22 04:05:09'),
-		(10, 'Oezil', '1/10/1990', '2019-08-22 04:05:010');"
+# Insert some seeding data
+echo "Insert some seeding data"
+psql -d $psqldb -c "INSERT INTO customers (name, dob, updated_at) VALUES
+    ('Ronaldo', '1/8/1991', '2019-08-22 04:05:01'),
+		('Messi', '3/4/1992', '2019-08-22 04:05:02'),
+		('Modric', '3/28/1993', '2019-08-22 04:05:03'),
+		('Salah', '4/25/1994', '2019-08-22 04:05:04'),
+		('Pogba', '1/8/1995', '2019-08-22 04:05:05'),
+		('Kante', '1/22/1996', '2019-08-22 04:05:06'),
+		('Neymar', '1/23/1997', '2019-08-22 04:05:07'),
+		('Mbappe', '1/13/1998', '2019-08-22 04:05:08'),
+		('Kroos', '1/11/1999', '2019-08-22 04:05:09'),
+		('Oezil', '1/10/1990', '2019-08-22 04:05:010');"
 
-# show customers table
+# Show customers table
 psql -d $psqldb -c "SELECT * FROM customers;"
