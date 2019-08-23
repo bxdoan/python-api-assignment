@@ -10,8 +10,8 @@
     ```
   * Install sqlalchemy and dependencies:
     ```
-    pip install sqlalchemy
-    pip install psycopg2-binary
+    pip3 install sqlalchemy
+    pip3 install psycopg2-binary
     ```
   * Install Flask and dependencies:
     ```
@@ -46,16 +46,30 @@
 4.  Create RESTful API endpoints returning JSON so that we can make CRUD actions:
     Please see [server.py](github.com/bxdoan/python-api-assignment/blob/master/basic_json_api/server.py) and run command to run the server locally:
     ```
-    python basic_json_api/server.py
+    cd basic_json_api/
+    FLASK_APP=run.py FLASK_DEBUG=1 flask run
     ```
-    * Read: `method = GET`
-      api.bxdoan.com/customers
-      [api.bxdoan.com/customers](api.bxdoan.com/customers) - show all customers
-      [api.bxdoan.com/customers/<id>](api.bxdoan.com/customers/1) - show **only** 1 customer by **id**
+    * Read:
+
+      [api.bxdoan.com/customers](http://api.bxdoan.com/customers) - `method = POST` - show all customers `method = GET`
+      [api.bxdoan.com/customers?id=1](http://api.bxdoan.com/customers?id=1) - `method = POST` -show **only** 1 customer by **id**
     * Create: `method = POST`
-      [api.bxdoan.com/create](api.bxdoan.com/create) - create customer with pair `name=<name>` and `dob=<datetime>`
+
+      [api.bxdoan.com/create](http://api.bxdoan.com/create) - create customer with pair `name=<name>` and `dob=<datetime>`
     * Update: `method = POST`
-      [api.bxdoan.com/update](api.bxdoan.com/update) - update **only** 1 customer by **id** `id=<id>` with `name=<name>` or `dob=<datetime>`
+
+      [api.bxdoan.com/update](http://api.bxdoan.com/update) - update **only** 1 customer by **id** `id=<id>` with `name=<name>` or `dob=<datetime>`
     * Delete: `method = DELETE`
-      [api.bxdoan.com/delete](api.bxdoan.com/delete?id=1) - delete **only** 1 customer by **id** `id=<id>`
+
+      [api.bxdoan.com/delete?id=1](http://api.bxdoan.com/customers?id=1) - delete **only** 1 customer by **id** `id=<id>`
 5.  Share Postman collection where we can use to make calls to these endpoints.
+
+## Deployment and Auth
+6.  Deploy on Google Cloud Platform with domain [api.bxdoan.com](http://api.bxdoan.com/) or IP **35.198.220.248**
+
+7.  The POST endpoint only allow to create user with age greater than 18.
+    **Create** and **update** with age lower than 18 with receive
+    ```
+    {'message': 'Customer should be greater 18'}
+    ```
+8.  Authentication should be using JWT token.
