@@ -5,6 +5,7 @@ from flask_jsonpify import jsonify
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import class_mapper
+from passlib.hash import pbkdf2_sha256 as sha256
 from json import dumps
 import datetime
 
@@ -20,6 +21,7 @@ class Users(base):
     id = Column(Integer, primary_key = True, autoincrement=True)
     username = Column(String(120), unique = True, nullable = False)
     password = Column(String(120), nullable = False)
+    dob = Column(String)
 
     def save_to_db(self):
         db.session.add(self)
@@ -28,6 +30,14 @@ class Users(base):
     @classmethod
     def find_by_username(cls, username):
         return db.session.query(Users).filter_by(username = username).first()
+
+    @staticmethod
+    def generate_hash(password):
+        return sha256.hash(password)
+
+    @staticmethod
+    def verify_hash(password, hash):
+        return sha256.verify(password, hash)
 
 class Customers(base):
     __tablename__ = 'customers'

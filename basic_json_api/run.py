@@ -13,6 +13,7 @@ api = Api(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:postgres@localhost/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 
 import resources, views
@@ -23,8 +24,6 @@ def create_tables():
     # Recreate database each time for demo
     base.metadata.create_all(db.engine)
 
-api.add_resource(resources.AllCustomers, '/customers')
-api.add_resource(resources.CreateCustomers, '/create')
-api.add_resource(resources.UpdateCustomers, '/update')
+api.add_resource(resources.CustomersResource, '/customers', '/customers/<id>')
 api.add_resource(resources.UserRegistration, '/registration')
 api.add_resource(resources.UserLogin, '/login')
