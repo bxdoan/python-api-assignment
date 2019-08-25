@@ -1,6 +1,6 @@
 # Author: Doan Bui (bxdoan93@gmail.com)
 # htttps://github.com/bxdoan/python-api-assignment
-from run import db
+from app import db
 from flask_jsonpify import jsonify
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
@@ -23,7 +23,7 @@ class Users(base):
     password = Column(String(120), nullable = False)
     dob = Column(String)
 
-    def save_to_db(self):
+    def add(self):
         db.session.add(self)
         db.session.commit()
 
@@ -50,15 +50,32 @@ class Customers(base):
         customers = [serialize(o) for o in db.session.query(Customers)]
         return customers
 
-    def return_id(cls):
+    def return_one(cls):
         customer = db.session.query(Customers).filter(Customers.id == cls).one()
         return customer
 
-    def save_to_db(self):
+    def add(self):
         db.session.add(self)
         db.session.commit()
 
-    def delete_id(cls):
+    def commit():
+        db.session.commit()
+
+    def delete(cls):
         customer = db.session.query(Customers).filter(Customers.id == cls).one()
         db.session.delete(customer)
         db.session.commit()
+
+class RevokedTokenModel(base):
+    __tablename__ = 'revoked_tokens'
+    id = Column(Integer, primary_key = True, autoincrement=True)
+    jti = Column(String(120))
+
+    def add(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def is_jti_blacklisted(cls, jti):
+        query = db.session.query(RevokedTokenModel).filter(RevokedTokenModel.jti == jti).first()
+        return bool(query)

@@ -42,26 +42,76 @@
     * Read: `method = GET`
 
       [api.bxdoan.com/customers](http://api.bxdoan.com/customers) - show all customers
-
+      ```
+      [{'id': id
+       'name': name,
+       'dob': dob
+       'updated_at': updated_at},....]
+      ```
       [api.bxdoan.com/customers/id](http://api.bxdoan.com/customers/1) - show **only** 1 customer by **id**
+      ```
+      {'id': id
+       'name': name,
+       'dob': dob
+       'updated_at': updated_at}
+      ```
     * Create: `method = POST`
 
-      [api.bxdoan.com/customers](http://api.bxdoan.com/customers) - create customer with pair `name=<name>` and `dob=<datetime>` in json type
+      [api.bxdoan.com/customers](http://api.bxdoan.com/customers) - create customer with data json type:
+      ```
+      {'name': name,
+       'dob': dob}
+      ```
     * Update: `method = PUT`
 
-      [api.bxdoan.com/customers](http://api.bxdoan.com/customers) - update **only** 1 customer by **id** `id=<id>` with `name=<name>` or `dob=<datetime>` in json type
+      [api.bxdoan.com/customers](http://api.bxdoan.com/customers) - update **only** 1 customer by **id** `id=<id>` in json type:
+      ```
+      {'id': id
+       'name': name,
+       'dob': dob}
+      ```
     * Delete: `method = DELETE`
 
       [api.bxdoan.com/delete?id=1](http://api.bxdoan.com/customers) - delete **only** 1 customer by **id** `id=<id>` in json type
+      ```
+      {'id': id}
+      ```
 5.  Share Postman collection where we can use to make calls to these endpoints.
 
 ## Deployment and Auth
 6.  Deploy on Google Cloud Platform with domain [api.bxdoan.com](http://api.bxdoan.com/) or IP **35.198.220.248**
 
 7.  The POST endpoint only allow to create user with age greater than 18.
+    * Registration: `method = POST`
 
+    [api.bxdoan.com/registration](http://api.bxdoan.com/registration) - with data json type:
+    ```
+    {'username': username,
+     'password': password,
+     'dob': dob}
+    ```
     **Create** with age lower than 18 with receive
     ```
     {'message': 'User should be greater 18'}
     ```
+
 8.  Authentication should be using JWT token.
+    * Login: `method = POST`
+
+    [api.bxdoan.com/login](http://api.bxdoan.com/login) - with data json type:
+    ```
+    {'username': username,
+     'password': password}
+    ```
+
+    * After **login**, we continuous use `/customers` api with `Authentication= 'Bearer <access_token>'`  in header to create/read/update/delete customers
+
+    * Logout access_token: `method = POST`
+
+    [api.bxdoan.com/logout/access](http://api.bxdoan.com/logout/access) - with `Authentication= 'Bearer <access_token>'` in header
+    * Logout refresh_token: `method = POST`
+
+    [api.bxdoan.com/logout/refresh](http://api.bxdoan.com/logout/refresh) - with `Authentication= 'Bearer <refresh_token>'` in header
+    * Token refresh: `method = POST`
+
+    [api.bxdoan.com/token/refresh](http://api.bxdoan.com/token/refresh) - with  `Authentication= 'Bearer <refresh_token>'` in header
