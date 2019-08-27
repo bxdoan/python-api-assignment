@@ -129,8 +129,7 @@ class CustomersResource(Resource):
             if data['id'] == None:
                 return {'message': 'customer_id field cannot be blank'}, 400
             Customers.delete(data['id'])
-            return {'message': 'Customer {} was deleted'.format(data['name']),
-                    'customer_id': data['id']
+            return {'message': 'customer_id {} was deleted'.format(data['id'])
             }, 200
         except:
             return {'message': 'Something went wrong'}, 500

@@ -96,22 +96,44 @@
     ```
 
 8.  Authentication should be using JWT token.
+    * Registration: `method = POST`
+
+    [api.bxdoan.com/registration](http://api.bxdoan.com/registration) - with data json type and `Content-Type=aplication/json` in header:
+    ```
+    {'username': username,
+     'password': password,
+     'dob': dob}
+    ```
+    ![registration](img/registration.png)
     * Login: `method = POST`
 
-    [api.bxdoan.com/login](http://api.bxdoan.com/login) - with data json type:
+    [api.bxdoan.com/login](http://api.bxdoan.com/login) - with data json type and `Content-Type=aplication/json` in header:
     ```
     {'username': username,
      'password': password}
     ```
+    ![login](img/login.png)
 
-    * After **login**, we continuous use `/customers` api with `Authentication= 'Bearer <access_token>'`  in header to create/read/update/delete customers
+    * After **login** or **registration**, we continuous use `/customers` api with `Authentication= 'Bearer <access_token>'` in header to create/read/update/delete customers:
+
+    ![read_all_customers](img/read_all_customers.png)
+    ![read_customer](img/read_customer.png)
+    ![create_customer](img/create_customer.png)
+    ![update_customer](img/update_customer.png)
+    ![delete_customer](img/delete_customer.png)
 
     * Logout access_token: `method = POST`
 
-    [api.bxdoan.com/logout/access](http://api.bxdoan.com/logout/access) - with `Authentication= 'Bearer <access_token>'` in header
+    [api.bxdoan.com/logout/access](http://api.bxdoan.com/logout/access) - with `Authentication= 'Bearer <access_token>'` in header:
+    ![logout_access_token](img/logout_access_token.png)
     * Logout refresh_token: `method = POST`
 
-    [api.bxdoan.com/logout/refresh](http://api.bxdoan.com/logout/refresh) - with `Authentication= 'Bearer <refresh_token>'` in header
+    [api.bxdoan.com/logout/refresh](http://api.bxdoan.com/logout/refresh) - with `Authentication= 'Bearer <refresh_token>'` in header:
+    ![logout_refresh_token](img/logout_refresh_token.png)
+    **Note:** After logout refresh token, we need login again
     * Token refresh: `method = POST`
 
-    [api.bxdoan.com/token/refresh](http://api.bxdoan.com/token/refresh) - with  `Authentication= 'Bearer <refresh_token>'` in header
+    [api.bxdoan.com/token/refresh](http://api.bxdoan.com/token/refresh) - with  `Authentication= 'Bearer <refresh_token>'` in header.
+    The access_token will expire in 15 minutes, so we need to refresh token by using this api and **refresh_token**
+    The refresh_token will also expire in 1 hour.
+    ![token_refresh](img/token_refresh.png)

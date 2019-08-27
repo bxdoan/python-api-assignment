@@ -12,7 +12,7 @@ function create_and_seed {
 
     # Create the customers table
     echo "Create the customers table"
-    psql -d $psqldb -U $psqluser -c "DROP TABLE IF EXISTS customers;
+    psql -d $psqldb -c "DROP TABLE IF EXISTS customers;
                                       CREATE TABLE customers(id serial PRIMARY KEY,
                                                name text,
                                                dob date,
@@ -46,7 +46,7 @@ if psql -lqt | cut -d \| -f 1 | grep -qw $psqluser; then
     echo "The database postgres exist. Droped it!"
     dropdb $psqldb
     if [ $? -ne 0 ]; then
-      die "Please drop this session and run script again!"    
+      die "Please drop this session and run script again!"
     else
       create_and_seed
     fi

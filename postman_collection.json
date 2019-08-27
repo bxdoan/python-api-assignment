@@ -1,0 +1,484 @@
+{
+	"info": {
+		"_postman_id": "bde169d2-8850-48bd-a5c2-b6c06c97bccd",
+		"name": "api.bxdoan.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer  {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "api.bxdoan.com/",
+					"host": [
+						"api",
+						"bxdoan",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/registration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dd7d0b7b-ed19-43c2-b453-23694dc5ec9e",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setGlobalVariable('access_token', jsonData.access_token);",
+							"postman.setGlobalVariable('refresh_token', jsonData.refresh_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "ngoc",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "ngoc",
+							"type": "text"
+						},
+						{
+							"key": "dob",
+							"value": "2000-2-1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "api.bxdoan.com/registration",
+					"host": [
+						"api",
+						"bxdoan",
+						"com"
+					],
+					"path": [
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f2b3145a-ecd0-48f8-ab15-687d8e7b6330",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setGlobalVariable('access_token', jsonData.access_token);",
+							"postman.setGlobalVariable('refresh_token', jsonData.refresh_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "doan",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "doan",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "api.bxdoan.com/login",
+					"host": [
+						"api",
+						"bxdoan",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/logout/access",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"name": "Content-Type",
+						"value": "Bearer  {{access_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "Bearer  {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "api.bxdoan.com/logout/access",
+					"host": [
+						"api",
+						"bxdoan",
+						"com"
+					],
+					"path": [
+						"logout",
+						"access"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/logout/refresh",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"name": "Content-Type",
+						"value": "Bearer  {{refresh_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "Bearer  {{refresh_token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "api.bxdoan.com/logout/refresh",
+					"host": [
+						"api",
+						"bxdoan",
+						"com"
+					],
+					"path": [
+						"logout",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/token/refresh",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4853586f-3607-4a30-b3a0-2680cd1e6adc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setGlobalVariable('access_token', jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"name": "Content-Type",
+						"value": "Bearer  {{refresh_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "Bearer  {{refresh_token}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "api.bxdoan.com/token/refresh",
+					"host": [
+						"api",
+						"bxdoan",
+						"com"
+					],
+					"path": [
+						"token",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read all customers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer  {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "api.bxdoan.com/customers",
+					"host": [
+						"api",
+						"bxdoan",
+						"com"
+					],
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create 1 customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer  {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "dob",
+							"value": "2000-2-2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "api.bxdoan.com/customers",
+					"host": [
+						"api",
+						"bxdoan",
+						"com"
+					],
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update 1 customer",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer  {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Trump",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "api.bxdoan.com/customers",
+					"host": [
+						"api",
+						"bxdoan",
+						"com"
+					],
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete 1 customer",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer  {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "8",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "api.bxdoan.com/customers",
+					"host": [
+						"api",
+						"bxdoan",
+						"com"
+					],
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read 1 customer",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer  {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "api.bxdoan.com/customers/2",
+					"host": [
+						"api",
+						"bxdoan",
+						"com"
+					],
+					"path": [
+						"customers",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "65c525e6-2550-44f9-bdda-003b526beb8c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9fc8ccec-6712-41b5-b69d-575fa3c501a4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "35a77a62-c010-411e-b153-a868ef231f07",
+			"key": "accessTokens",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "39eab6d6-e6cc-4fe3-b574-1f7d43e2d2b3",
+			"key": "refreshTokens",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
