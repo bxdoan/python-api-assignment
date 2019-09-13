@@ -6,7 +6,7 @@ from sqlalchemy import Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-db_string = "postgres://postgres:postgres@localhost/postgres"
+db_string = "postgres://postgres:postgres@localhost:54322/postgres"  #TODO Doan load this as one centralized config file
 
 db = create_engine(db_string)
 base = declarative_base()

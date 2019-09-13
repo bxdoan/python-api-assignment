@@ -12,7 +12,7 @@ from flask_jwt_extended import JWTManager
 app = Flask(__name__)
 api = Api(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:postgres@localhost/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:postgres@localhost:54322/postgres'  #TODO Doan load this as one centralized config file
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
