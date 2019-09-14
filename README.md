@@ -76,7 +76,8 @@
       ```
       {'id': id}
       ```
-5.  Share Postman collection where we can use to make calls to these endpoints.
+5.  Share [postman_collection.json](https://github.com/bxdoan/python-api-assignment/blob/master/postman_collection.json) where we can use to make calls to these endpoints.
+    Remember import [bxdoan_postman_environment.json](https://github.com/bxdoan/python-api-assignment/blob/master/bxdoan_postman_environment.json) and [localhost_postman_environment.json](https://github.com/bxdoan/python-api-assignment/blob/master/localhost_postman_environment.json) to test
 
 ## Deployment and Auth
 6.  Deploy on Google Cloud Platform with domain [api.bxdoan.com](http://api.bxdoan.com/) or IP **35.198.220.248**
@@ -137,3 +138,76 @@
     The access_token will expire in 15 minutes, so we need to refresh token by using this api and **refresh_token**
     The refresh_token will also expire in 1 hour.
     ![token_refresh](img/token_refresh.png)
+
+## devops
+
+1. Install Compute Engine with VM instance details:
+  ![cloud_vm_instances](img/cloud_vm_instances.png)
+
+2. Configuration dns domain in for server:
+  ![dns_domain](img/dns_domain.png)
+
+3. Configuration wsgi:
+
+  Create a file /python-api-assignment/basic_json_api/run.ini:
+  ```
+  [uwsgi]
+  module = run:app
+  master = true
+  processes = 2
+  socket = bxdoan.sock
+  chmod-socket = 660
+  vacuum = true
+  callable = app
+  buffer-size = 32768
+  die-on-term = true
+  logger = file:/tmp/errlog
+  ```
+  Then create a systemctl startup file /etc/systemd/system/bxdoan.service:
+  ```
+  [Unit]
+  Description="uWSGI server instance for bxdoan.com"
+  After=network.target
+
+  [Service]
+  User=www-data
+  Group=www-data
+  WorkingDirectory=/var/www/html/python-api-assignment/basic_json_api/
+  ExecStart=uwsgi --ini /var/www/html/python-api-assignment/basic_json_api/run.ini
+
+  [Install]
+  WantedBy=multi-user.target
+  ```
+  Start process:
+  ```
+  sudo systemctl start bxdoan
+  sudo systemctl enable bxdoan
+  ```
+  Check socket file:
+  ```
+  ls /var/www/html/python-api-assignment/basic_json_api/bxdoan.sock
+  ```
+  If you see **bxdoan.sock**, it means that wsgi is ready to connect, but we need to continue configure engix to forward port default 80 to socket that we've created.
+
+4. Configuration enginx:
+
+  Create a file /etc/nginx/sites-enabled/bxdoan.eginx:
+  ```
+  server {
+      listen 80;
+      server_name api.bxdoan.com www.api.bxdoan.com;
+
+      location / {
+          include uwsgi_params;
+          uwsgi_pass unix:/var/www/html/python-api-assignment/basic_json_api/bxdoan.sock;
+      }
+  }
+  ```
+  Test your Nginx configuration and start Nginx:
+  ```
+  nginx -t -c /etc/nginx/nginx.conf
+  # nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+  # nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+  /etc/init.d/nginx start
+  ```

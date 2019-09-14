@@ -1,6 +1,6 @@
 # Author: Doan Bui (bxdoan93@gmail.com)
 # htttps://github.com/bxdoan/python-api-assignment
-from app import db
+from config import db
 from flask_jsonpify import jsonify
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base

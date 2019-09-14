@@ -18,8 +18,8 @@ function create_and_seed {
                                                dob date,
                                                updated_at timestamp);"
 
-    # Insert some seeding data
-    echo "Insert some seeding data"
+    # Insert some seeding data customers
+    echo "Insert some seeding data customers"
     psql -d $psqldb -c "INSERT INTO customers (name, dob, updated_at) VALUES
         ('Ronaldo', '1/8/1991', '2019-08-22 04:05:01'),
     		('Messi', '3/4/1992', '2019-08-22 04:05:02'),
@@ -31,6 +31,19 @@ function create_and_seed {
     		('Mbappe', '1/13/1998', '2019-08-22 04:05:08'),
     		('Kroos', '1/11/1999', '2019-08-22 04:05:09'),
     		('Oezil', '1/10/1990', '2019-08-22 04:05:010');"
+
+    # Create the users table
+    echo "Create the users table"
+    psql -d $psqldb -c "DROP TABLE IF EXISTS users;
+                              CREATE TABLE users(id serial PRIMARY KEY,
+                                       username text,
+                                       password text,
+                                       dob date);"
+
+     # Insert some seeding data users
+     echo "Insert some seeding data users"
+     psql -d $psqldb -c "INSERT INTO users (username, password, dob) VALUES
+     		       ('doan', 'doan', '1/10/1990');"
 
     # Show customers table
     psql -d $psqldb -c "SELECT * FROM customers;"

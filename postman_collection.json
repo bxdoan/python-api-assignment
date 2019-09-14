@@ -13,15 +13,14 @@
 					{
 						"key": "Authorization",
 						"value": "Bearer  {{access_token}}",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"url": {
-					"raw": "api.bxdoan.com/",
+					"raw": "{{url}}/",
 					"host": [
-						"api",
-						"bxdoan",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						""
@@ -77,11 +76,9 @@
 					]
 				},
 				"url": {
-					"raw": "api.bxdoan.com/registration",
+					"raw": "{{url}}/registration",
 					"host": [
-						"api",
-						"bxdoan",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"registration"
@@ -132,11 +129,9 @@
 					]
 				},
 				"url": {
-					"raw": "api.bxdoan.com/login",
+					"raw": "{{url}}/login",
 					"host": [
-						"api",
-						"bxdoan",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"login"
@@ -166,11 +161,9 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "api.bxdoan.com/logout/access",
+					"raw": "{{url}}/logout/access",
 					"host": [
-						"api",
-						"bxdoan",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"logout",
@@ -201,11 +194,9 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "api.bxdoan.com/logout/refresh",
+					"raw": "{{url}}/logout/refresh",
 					"host": [
-						"api",
-						"bxdoan",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"logout",
@@ -249,11 +240,9 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "api.bxdoan.com/token/refresh",
+					"raw": "{{url}}/token/refresh",
 					"host": [
-						"api",
-						"bxdoan",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"token",
@@ -275,11 +264,9 @@
 					}
 				],
 				"url": {
-					"raw": "api.bxdoan.com/customers",
+					"raw": "{{url}}/customers",
 					"host": [
-						"api",
-						"bxdoan",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"customers"
@@ -320,11 +307,9 @@
 					]
 				},
 				"url": {
-					"raw": "api.bxdoan.com/customers",
+					"raw": "{{url}}/customers",
 					"host": [
-						"api",
-						"bxdoan",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"customers"
@@ -365,11 +350,9 @@
 					]
 				},
 				"url": {
-					"raw": "api.bxdoan.com/customers",
+					"raw": "{{url}}/customers",
 					"host": [
-						"api",
-						"bxdoan",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"customers"
@@ -405,11 +388,9 @@
 					]
 				},
 				"url": {
-					"raw": "api.bxdoan.com/customers",
+					"raw": "{{url}}/customers",
 					"host": [
-						"api",
-						"bxdoan",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"customers"
@@ -430,11 +411,9 @@
 					}
 				],
 				"url": {
-					"raw": "api.bxdoan.com/customers/2",
+					"raw": "{{url}}/customers/2",
 					"host": [
-						"api",
-						"bxdoan",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"customers",
