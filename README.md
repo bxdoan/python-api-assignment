@@ -144,7 +144,7 @@
 1. Install Compute Engine with VM instance details:
   ![cloud_vm_instances](img/cloud_vm_instances.png)
 
-2. Configuration dns domain in for server:
+2. Configuration dns domain for server:
   ![dns_domain](img/dns_domain.png)
 
 3. Configuration wsgi:
@@ -189,9 +189,9 @@
   ```
   If you see **bxdoan.sock**, it means that wsgi is ready to connect, but we need to continue configure engix to forward port default 80 to socket that we've created.
 
-4. Configuration enginx:
+4. Configuration Nginx:
 
-  Create a file /etc/nginx/sites-enabled/bxdoan.eginx:
+  Create a file /etc/nginx/sites-enabled/bxdoan.nginx:
   ```
   server {
       listen 80;
