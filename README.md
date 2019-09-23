@@ -187,7 +187,7 @@
   ```
   ls /var/www/html/python-api-assignment/basic_json_api/bxdoan.sock
   ```
-  If you see **bxdoan.sock**, it means that wsgi is ready to connect, but we need to continue configure engix to forward port default 80 to socket that we've created.
+  If you see **bxdoan.sock**, it means that wsgi is ready to connect, but we need to continue configure nginx to forward port default 80 to socket that we've created.
 
 4. Configuration Nginx:
 
